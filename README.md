@@ -4,4 +4,4 @@
 
 Name : feb project using html and css
 
-Link : [https://deluxe-nougat-080fab.netlify.app/](https://web-dev-project-1-hc-crg.netlify.app/)
+Link : [visit website](https://web-dev-project-1-hc-crg.netlify.app/)
