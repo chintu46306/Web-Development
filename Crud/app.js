@@ -11,18 +11,18 @@ const connectToDb = require('./config/db.js');
 const app = exprees();
 
 // Express middleware
-app.use(exprees.json());
-app.use(exprees.urlencoded({extended:true}));
+app.use(exprees.json())
+app.use(exprees.urlencoded({extended:true}))
 
 // cors
-app.use(cors());
+app.use(cors())
 
 // init connection to db
 connectToDb()
 
-const userRoutes = require('./routes/userRoutes.js');
+const userRoutes = require('./routes/userRoutes.js')
 
-app.use('/',userRoutes);
+app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
