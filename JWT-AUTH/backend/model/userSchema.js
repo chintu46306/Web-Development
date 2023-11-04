@@ -1,3 +1,4 @@
+require('dotenv').config(); // Import dotenv module
 const mongoose = require('mongoose'); // Import mongoose
 const { Schema } = mongoose; // Destructure Schema from mongoose
 const JWT = require('jsonwebtoken'); // Import jsonwebtoken module
@@ -43,6 +44,6 @@ const userSchema = new Schema({   // Create userSchema
         }
     }
 
-
+console.log(process.env.SECRET);
 const userModel = mongoose.model('User', userSchema); // Create User model
 module.exports = userModel; // Export User model
