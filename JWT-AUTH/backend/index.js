@@ -1,3 +1,4 @@
+require('dotenv').config();     // Import dotenv module to read .env file
 const PORT = process.env.PORT || 3001;
 
 const app = require('./app');  // Import app from app.js
@@ -7,6 +8,6 @@ const app = require('./app');  // Import app from app.js
 
 
 
-app.listen(PORT, () => {        // Start server
+app.listen(PORT, () => {        // Start servernode "d:\PW skill\JWT-AUTH\backend\app.js"
     console.log(`Server listening at port ${PORT}`);
 })

@@ -1,0 +1,20 @@
+const nodemon = require("nodemon")
+
+//npm install express cookie-parser bcrypt mongoose jsonwebtoken cors email-validator dotenv --save
+
+
+// to run terminal  with nodemon
+//nodemon "d:\PW skill\JWT-AUTH\backend\index.js"
+
+// to run terminal  with nodemon
+"start": "nodemon index.js",
+
+
+
+to create data type
+{ 
+    "name": "rahul",
+    "email": "ra@gmail.com",
+    "password": "ral",
+    "confirmPassword": "ral"
+    }
