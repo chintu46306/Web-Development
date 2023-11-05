@@ -4,6 +4,7 @@ const JWT = require('jsonwebtoken'); // Import jsonwebtoken module
 const jwtAuth = (req, res, next) => {
 
     const token = (req.cookies && req.cookies.token) || null;
+    console.log(token);
    
     if(!token){ 
     return res.status(400).json({

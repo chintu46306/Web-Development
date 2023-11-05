@@ -1,4 +1,5 @@
-require('dotenv').config();     // Import dotenv module to read .env file
+const path = require('path'); // ye line isliye likhi hai kyunki humne .env file ko config kia hai aur usme humne port aur mongo_uri ko store kia hai
+require('dotenv').config({path:path.resolve(__dirname,'../.env')});  // ye line isliye likhi hai kyunki humne .env file ko config kia hai aur usme humne port aur mongo_uri ko store kia hai
 const PORT = process.env.PORT || 3001;
 
 const app = require('./app');  // Import app from app.js

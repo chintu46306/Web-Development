@@ -2,8 +2,8 @@ const express = require('express');     // Import express
 
 const app = express(); 
 const authRouter = require('./router/authRoute');              // Create express app
-const databaseconnect = require('./config/databaseConfig');
-const cookieParser = require('cookie-parser');
+const databaseconnect = require('./config/databaseConfig');    // Import databaseconnect function
+const cookieParser = require('cookie-parser');                  // Import cookie-parser module
 
 
 databaseconnect();                      // Call databaseconnect function

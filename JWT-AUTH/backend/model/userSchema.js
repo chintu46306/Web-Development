@@ -1,7 +1,9 @@
-require('dotenv').config(); // Import dotenv module
+const path = require('path');                                        // ye line isliye likhi hai kyunki humne .env file ko config kia hai aur usme humne port aur mongo_uri ko store kia hai
+require('dotenv').config({path:path.resolve(__dirname,'../.env')});  // ye line isliye likhi hai kyunki humne .env file ko config kia hai aur usme humne port aur mongo_uri ko store kia hai
 const mongoose = require('mongoose'); // Import mongoose
 const { Schema } = mongoose; // Destructure Schema from mongoose
 const JWT = require('jsonwebtoken'); // Import jsonwebtoken module
+const bcrypt = require('bcrypt'); // Import bcryptjs module
 
 
 const userSchema = new Schema({   // Create userSchema
@@ -34,6 +36,15 @@ const userSchema = new Schema({   // Create userSchema
 
 });
 
+userSchema.pre('save', async function(next){ // Create 'pre' save hook to hash password before saving user to database 
+        if(!this.isModified('password'))  {
+            return next();
+        }  
+        this.password = await bcrypt.hash(this.password, 10);                                                                                                               
+        return next();
+    })
+
+
     userSchema.methods = {
         jwtToken(){
             return JWT.sign(
@@ -44,6 +55,5 @@ const userSchema = new Schema({   // Create userSchema
         }
     }
 
-console.log(process.env.SECRET);
 const userModel = mongoose.model('User', userSchema); // Create User model
 module.exports = userModel; // Export User model

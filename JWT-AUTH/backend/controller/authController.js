@@ -1,5 +1,7 @@
-const userModel = require("../model/userSchema"); // Import user model
+const jwt = require("jsonwebtoken");               // Import jsonwebtoken module
+const userModel = require("../model/userSchema");  // Import user model
 const emailValidator = require("email-validator"); // Import email-validator module
+const bcrypt = require("bcrypt");                  // Import bcryptjs module
 
 const signup = async (req, res, next) => {
   // Create signup controller
@@ -81,13 +83,13 @@ const signin = async (req, res) => {
       })
       .select("+password"); // Select password field  
 
-      console.log(user);
-      if (!user || user.password !== password) {
-        console.log(user.password, password);
+     
+      // if (!user || !( await bcrypt.compare(password, user.password))) {
+        if (!user ||  await bcrypt.compare(password, user.password)) {
       // Check if user exists and password is correct
-      return res.status(401).json({
+      return res.status(400).json({
         success: false,  
-        message: "invalid credentials",
+        message: "invalid credentials"
       })
     }
 
@@ -131,10 +133,31 @@ const getUser = async (req, res, next) => {
   }
 }
 
+const logout = ( req, res) => {
+    try{
+      const cookieOption = {
+         expire: new Date(),
+          httpOnly: true
+      };
+        res.cookie("token", null, cookieOption);
+        res.status(200).json({
+            success: true,
+            message: "Logged Out"
+        })
+
+    } catch(e) {
+        res.status(400).json({
+            success: false,
+            message: e.message
+        })
+    }
+}
+
 
 
 module.exports = {
   signup,
   signin,
-  getUser
+  getUser,
+  logout
 };
